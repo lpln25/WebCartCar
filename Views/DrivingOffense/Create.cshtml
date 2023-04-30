@@ -1,0 +1,79 @@
+﻿@model CartCar.App.Models.Entities.DrivingOffenses
+
+@{
+    ViewData["Title"] = "جریمه - ثبت";
+}
+
+
+<h4>ثبت جریمه</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="Location" class="form-control" id="Location" placeholder="@Html.DisplayNameFor(p => p.Location)" />
+                    <label asp-for="Location" class="control-label">@Html.DisplayNameFor(p => p.Location)</label>
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input type="text" asp-for="DateDone" class="form-control" id="DateDone" placeholder="@Html.DisplayNameFor(p => p.DateDone)" autocomplete="off" />
+                    @*<label asp-for="DateDone" class="control-label"></label>*@
+                    <span for="DateDone"> @Html.DisplayNameFor(p => p.DateDone)</span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Code" class="form-control" id="Code" placeholder="@Html.DisplayNameFor(p => p.Code)" />
+                    <label asp-for="Code" class="control-label"> @Html.DisplayNameFor(p => p.Code)</label>
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Price" class="form-control" id="Price" placeholder="@Html.DisplayNameFor(p => p.Price)" />
+                    <label asp-for="Price" class="control-label"> @Html.DisplayNameFor(p => p.Price)</label>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="Part4" class="form-control" id="Part4" placeholder="@Html.DisplayNameFor(p => p.Part4)" autocomplete="off" />
+                    <label asp-for="Part4" class="control-label">@Html.DisplayNameFor(p => p.Part4)</label>
+                    <span asp-validation-for="Part4" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Part3" class="form-control" id="Part3" placeholder="@Html.DisplayNameFor(p => p.Part3)" autocomplete="off" />
+                    <label asp-for="Part3" class="control-label">@Html.DisplayNameFor(p => p.Part3)</label>
+                    <span asp-validation-for="Part3" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <select asp-for="Part2" class="form-control" id="Part2">
+                        @for (int i = 0; i < Model.Specialcharacters.Count; i++)
+                        {
+                            <option value="@i">@Model.Specialcharacters[i]</option>
+                        }
+                    </select>
+                    <label asp-for="Part2" class="control-label">@Html.DisplayNameFor(p => p.Part2)</label>
+                    <span for="Part2"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Part1" class="form-control" id="Part1" placeholder="@Html.DisplayNameFor(p => p.Part1)" autocomplete="off" />
+                    <label asp-for="Part1" class="control-label">@Html.DisplayNameFor(p => p.Part1)</label>
+                    <span asp-validation-for="Part1" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ثبت جریمه" class="btn btn-primary" />
+                <a asp-action="Index">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

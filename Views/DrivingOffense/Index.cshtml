@@ -1,0 +1,100 @@
+﻿@using CartCar.App.Models.Entities;
+@model IEnumerable<CartCar.App.Models.Entities.DrivingOffenses>
+
+@{
+    ViewData["Title"] = "جریمه رانندگی";
+}
+
+<div class="container">
+
+    <p>
+        <a asp-action="Create">جریمه جدید</a>
+    </p>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateDone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    پلاک
+                </th>
+                @* <th>
+                @Html.DisplayNameFor(model => model.Part1)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part2)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part3)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part4)
+                </th>
+                <th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @(((DateTime)item.DateDone).ToString("yyyy/MM/dd"))
+
+                    </td>
+                    <td onclick="onLoadInfractionClick(@item.Code)" class="text-info" data-bs-toggle="modal" data-bs-target="#modal2">
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @item.Price.ToString("#,##")
+                    </td>
+                    <td class="text-info" onclick="onLoadCartcarClick('@item.Part1',@((int)item.Part2),'@item.Part3','@item.Part4')" data-bs-toggle="modal" data-bs-target="#modal1">
+                        @string.Format($"{item.Part4} {item.Part3} {item.Part2}  {item.Part1}")
+                    </td>
+                    @*<td>
+                @Html.DisplayFor(modelItem => item.Part1)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part2)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part3)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part4)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">ویرایش</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">مشاهده</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@{
+    Cartcar cartcar = new Cartcar(); // جنبه نمایشی دارد
+    InfractionCar infractionCar = new InfractionCar(); // جنبه نمایشی دارد
+    <partial name="_modal1" model="cartcar" />
+    <partial name="_modal2" model="infractionCar" />
+}
+
+
+@section Scripts{
+    <script src="~/js/datesignalrservice.js"></script>
+}

@@ -1,0 +1,148 @@
+﻿@model CartCar.App.Models.Entities.Cartcar
+
+@{
+    ViewData["Title"] = "کارت ماشین - ثبت کارت جدید";
+}
+
+
+<h4>کارت ماشین</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="OwnerName" class="form-control" id="OwnerName" placeholder="@Html.DisplayNameFor(p => p.OwnerName)" />
+                    <label asp-for="OwnerName" class="control-label">@Html.DisplayNameFor(p => p.OwnerName)</label>
+                    <span asp-validation-for="OwnerName" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="NationalCode" class="form-control" id="NationalCode" placeholder="@Html.DisplayNameFor(p => p.NationalCode)" />
+                    <label asp-for="NationalCode" class="control-label">@Html.DisplayNameFor(p => p.NationalCode)</label>
+                    <span asp-validation-for="NationalCode" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Fathername" class="form-control" id="Fathername" placeholder="@Html.DisplayNameFor(p => p.Fathername)" />
+                    <label asp-for="Fathername" class="control-label">@Html.DisplayNameFor(p => p.Fathername)</label>
+                    <span asp-validation-for="Fathername" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="VIN" class="form-control" id="VIN" placeholder="@Html.DisplayNameFor(p => p.VIN)" />
+                    <label asp-for="VIN" class="control-label">@Html.DisplayNameFor(p => p.VIN)</label>
+                    <span asp-validation-for="VIN" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="ModelCar" class="form-control" id="ModelCar" placeholder="@Html.DisplayNameFor(p => p.ModelCar)" />
+                    <label asp-for="ModelCar" class="control-label">@Html.DisplayNameFor(p => p.ModelCar)</label>
+                    <span asp-validation-for="ModelCar" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="SystemCar" class="form-control" id="SystemCar" placeholder="@Html.DisplayNameFor(p => p.SystemCar)" />
+                    <label asp-for="SystemCar" class="control-label">@Html.DisplayNameFor(p => p.SystemCar)</label>
+                    <span asp-validation-for="SystemCar" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Tip" class="form-control" id="Tip" placeholder="@Html.DisplayNameFor(p => p.Tip)" />
+                    <label asp-for="Tip" class="control-label">@Html.DisplayNameFor(p => p.Tip)</label>
+                    <span asp-validation-for="Tip" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Color" class="form-control" id="Color" placeholder="@Html.DisplayNameFor(p => p.Color)" />
+                    <label asp-for="Color" class="control-label">@Html.DisplayNameFor(p => p.Color)</label>
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="DateCreated" class="form-control" id="DateCreated" placeholder="@Html.DisplayNameFor(p => p.DateCreated)" />
+                    <label asp-for="DateCreated" class="control-label">@Html.DisplayNameFor(p => p.DateCreated)</label>
+                    <span asp-validation-for="DateCreated" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <select asp-for="FuelType" class="form-control" Id="FuelType">
+                        @for (int i = 0; i < Model.SpecialFuelTypes.Count; i++)
+                        {
+                            <option value="@i">@Model.SpecialFuelTypes[i]</option>
+                        }
+                    </select>
+                    <label asp-for="FuelType" class="control-label">@Html.DisplayNameFor(p => p.FuelType)</label>
+                    <span for="FuelType"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Copacity" class="form-control" id="Copacity" placeholder="@Html.DisplayNameFor(p => p.Copacity)" />
+                    <label asp-for="Copacity" class="control-label">@Html.DisplayNameFor(p => p.Copacity)</label>
+                    <span asp-validation-for="Copacity" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="EngineNumber" class="form-control" id="EngineNumber" placeholder="@Html.DisplayNameFor(p => p.EngineNumber)" />
+                    <label asp-for="EngineNumber" class="control-label">@Html.DisplayNameFor(p => p.EngineNumber)</label>
+                    <span asp-validation-for="EngineNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="Part4" class="form-control" id="Part4" placeholder="@Html.DisplayNameFor(p => p.Part4)" />
+                    <label asp-for="Part4" class="control-label">@Html.DisplayNameFor(p => p.Part4)</label>
+                    <span asp-validation-for="Part4" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Part3" class="form-control" id="Part3" placeholder="@Html.DisplayNameFor(p => p.Part3)" />
+                    <label asp-for="Part3" class="control-label">@Html.DisplayNameFor(p => p.Part3)</label>
+                    <span asp-validation-for="Part3" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <select asp-for="Part2" class="form-control" id="Part2">
+                        @for (int i = 0; i < Model.Specialcharacters.Count; i++)
+                        {
+                            <option value="@i">@Model.Specialcharacters[i]</option>
+                        }
+                    </select>
+                    <label asp-for="Part2" class="control-label">@Html.DisplayNameFor(p => p.Part2)</label>
+                    <span for="Part2"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Part1" class="form-control" id="Part1" placeholder="@Html.DisplayNameFor(p => p.Part1)" />
+                    <label asp-for="Part1" class="control-label">@Html.DisplayNameFor(p => p.Part1)</label>
+                    <span asp-validation-for="Part1" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="ChassisNumber" class="form-control" id="ChassisNumber" placeholder="@Html.DisplayNameFor(p => p.ChassisNumber)" />
+                    <label asp-for="ChassisNumber" class="control-label">@Html.DisplayNameFor(p => p.ChassisNumber)</label>
+                    <span asp-validation-for="ChassisNumber" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="SerialNumber" class="form-control" id="SerialNumber" placeholder="@Html.DisplayNameFor(p => p.SerialNumber)" />
+                    <label asp-for="SerialNumber" class="control-label">@Html.DisplayNameFor(p => p.SerialNumber)</label>
+                    <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input type="submit" value="ثبت کارت ماشین" class="btn btn-primary" />
+                </div>
+
+                <div class="col">
+                    <a asp-action="Index">بازگشت به لیست</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

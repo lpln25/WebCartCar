@@ -1,0 +1,143 @@
+﻿@model CartCar.App.Models.ViewModels.SearchDrivingOffenseVM
+
+@{
+    ViewData["Title"] = "جستجو - برگ جریمه";
+}
+
+<div class="container">
+    <h4>جستجو</h4>
+
+
+    <div class="row mb-3">
+        <form asp-action="Search" asp-controller="DrivingOffense" method="post">
+            @*...................پلاک....................*@
+            <div class="row mb-3">
+                <div class="form-floating col">
+                    <input asp-for="drivingOffenses.Part4" class="form-control" id="Part4" placeholder="@Html.DisplayNameFor(p => p.drivingOffenses.Part4)" autocomplete="off" />
+                    <label asp-for="drivingOffenses.Part4" class="control-label">* @Html.DisplayNameFor(p => p.drivingOffenses.Part4)</label>
+                    <span asp-validation-for="drivingOffenses.Part4" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="drivingOffenses.Part3" class="form-control" id="Part3" placeholder="@Html.DisplayNameFor(p => p.drivingOffenses.Part3)" autocomplete="off" />
+                    <label asp-for="drivingOffenses.Part3" class="control-label">* @Html.DisplayNameFor(p => p.drivingOffenses.Part3)</label>
+                    <span asp-validation-for="drivingOffenses.Part3" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <select asp-for="drivingOffenses.Part2" class="form-control" id="Part2">
+                        @for (int i = 0; i < Model.drivingOffenses.Specialcharacters.Count; i++)
+                        {
+                            <option value="@i">@Model.drivingOffenses.Specialcharacters[i]</option>
+                        }
+                    </select>
+                    <label asp-for="drivingOffenses.Part2" class="control-label">* @Html.DisplayNameFor(p => p.drivingOffenses.Part2)</label>
+                    <span for="Part2"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="drivingOffenses.Part1" class="form-control" id="Part1" placeholder="@Html.DisplayNameFor(p => p.drivingOffenses.Part1)" autocomplete="off" />
+                    <label asp-for="drivingOffenses.Part1" class="control-label">* @Html.DisplayNameFor(p => p.drivingOffenses.Part1)</label>
+                    <span asp-validation-for="drivingOffenses.Part1" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-floating col-4">
+                    <input type="text" asp-for="drivingOffenses.DateDone" class="form-control" id="DateDone" autocomplete="off" />
+                    <span asp-for="drivingOffenses.DateDone">(اختیاری)@Html.DisplayNameFor(model => model.drivingOffenses.DateDone)</span>
+                </div>
+                <div class="form-floating col-4">
+                    <input asp-for="drivingOffenses.Location" class="form-control" id="Location" placeholder="@Html.DisplayNameFor(model => model.drivingOffenses.Location)" />
+                    <label asp-for="drivingOffenses.Location">(اختیاری) @Html.DisplayNameFor(model => model.drivingOffenses.Location)</label>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-success form-control" type="submit">جستجو</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.drivingOffenses.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.drivingOffenses.DateDone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.drivingOffenses.Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.drivingOffenses.Price)
+                </th>
+                <th>
+                    پلاک
+                </th>
+                @*<th>
+                @Html.DisplayNameFor(model => model.Part1)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part2)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part3)
+                </th>
+                <th>
+                @Html.DisplayNameFor(model => model.Part4)
+                </th>*@
+                @*<th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ResultSearchDrivingOffenses)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @(((DateTime)item.DateDone).ToString("yyyy/MM/dd"))
+                    </td>
+                    <td onclick="onLoadInfractionClick(@item.Code)" class="text-info" data-bs-toggle="modal" data-bs-target="#modal2">
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @item.Price.ToString("#,##")
+                    </td>
+                    <td class="text-info" onclick="onLoadCartcarClick('@item.Part1',@((int)item.Part2),'@item.Part3','@item.Part4')" data-bs-toggle="modal" data-bs-target="#modal1">
+                        @string.Format($"{item.Part4} {item.Part3} {item.Part2}  {item.Part1}")
+                    </td>
+                    @*<td>
+                @Html.DisplayFor(modelItem => item.Part1)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part2)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part3)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Part4)
+                </td>
+                <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<partial name="_modal1" model="Model.Cartcar" />
+<partial name="_modal2" model="Model.InfractionCar" />
+
+@section Scripts{
+    <script src="~/js/datesignalrservice.js"></script>
+}

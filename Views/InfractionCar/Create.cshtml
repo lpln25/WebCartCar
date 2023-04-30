@@ -1,0 +1,57 @@
+﻿@model CartCar.App.Models.Entities.InfractionCar
+
+@{
+    ViewData["Title"] = "تخلف - ثبت";
+}
+
+
+<h4>ثبت تخلف</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mb-2">
+                <div class="form-floating col-2">
+                    <input asp-for="Code" class="form-control" id="Code" placeholder="@Html.DisplayNameFor(p => p.Code)" />
+                    <label asp-for="Code" class="control-label">@Html.DisplayNameFor(p => p.Code)</label>
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                <div class="form-floating col-10">
+                    <input asp-for="Infraction" class="form-control" id="Infraction" placeholder="@Html.DisplayNameFor(p => p.Infraction)" />
+                    <label asp-for="Infraction" class="control-label">@Html.DisplayNameFor(p => p.Infraction)</label>
+                    <span asp-validation-for="Infraction" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="form-floating col">
+                    <input asp-for="Price1" class="form-control" id="Price1" placeholder="@Html.DisplayNameFor(p => p.Price1)" />
+                    <label asp-for="Price1" class="control-label">@Html.DisplayNameFor(p => p.Price1)</label>
+                    <span asp-validation-for="Price1" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Price2" class="form-control" id="Price2" placeholder="@Html.DisplayNameFor(p => p.Price2)" />
+                    <label asp-for="Price2" class="control-label">@Html.DisplayNameFor(p => p.Price2)</label>
+                    <span asp-validation-for="Price2" class="text-danger"></span>
+                </div>
+                <div class="form-floating col">
+                    <input asp-for="Price3" class="form-control" id="Price3" placeholder="@Html.DisplayNameFor(p => p.Price3)" />
+                    <label asp-for="Price3" class="control-label">@Html.DisplayNameFor(p => p.Price3)</label>
+                    <span asp-validation-for="Price3" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ثبت تخلف" class="btn btn-primary" />
+                <a asp-action="Index">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

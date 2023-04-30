@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CartCar.App.Models.Entities.InfractionCar>
+
+@{
+    ViewData["Title"] = "لیست تخلفات راهنمایی رانندگی";
+}
+
+<h4>تخلفات</h4>
+
+<p>
+    <a asp-action="Create">ثبت تخلف</a>
+</p>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Infraction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price3)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Infraction)
+                </td>
+                <td>
+                    @item.Price1.ToString("#,##")
+                    @*@Html.DisplayFor(modelItem => item.Price1)*@
+                </td>
+                <td>
+                    @item.Price2.ToString("#,##")
+                    @*@Html.DisplayFor(modelItem => item.Price2)*@
+                </td>
+                <td>
+                    @item.Price3.ToString("#,##")
+                    @*@Html.DisplayFor(modelItem => item.Price3)*@
+                </td>
+                @* <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">ویرایش</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">مشاهده</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

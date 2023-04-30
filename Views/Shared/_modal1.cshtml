@@ -1,0 +1,72 @@
+﻿@model CartCar.App.Models.Entities.Cartcar
+
+<div dir="rtl" class="modal fade " id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">مشاهده اطلاعات فردی</h5>
+                @*<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>*@
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.OwnerName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NationalCode)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Fathername)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.VIN)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ModelCar)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SystemCar)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Tip)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Color)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateCreated)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Copacity)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EngineNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ChassisNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SerialNumber)
+                                </th>
+                                @*<th>
+                                    پلاک
+                                </th>*@
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="tableCartcar">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>
